@@ -8,19 +8,19 @@ export const addProduct = async (req, res) => {
 
         
         // adding image of the product to cloudinary
-        // if (image) {
-        //     cloudinaryResponse = await cloudinary.uploader
-        //     .upload(image, {folder: "products"})
-        //     .then(result => console.log(result));
-        // } else {
-        //     cloudinaryResponse = null
-        // }
+        if (image) {
+            cloudinaryResponse = await cloudinary.uploader
+            .upload(image, {folder: "products"})
+            .then(result => console.log(result));
+        } else {
+            cloudinaryResponse = null
+        }
         
         const product = await Product.create ({
             name, 
             description,
             price,
-            // image: cloudnaryResponse?.secure_url ? cloudnaryResponse.secure_url : " ",
+            image: cloudnaryResponse?.secure_url ? cloudnaryResponse.secure_url : " ",
             category
         })
 
